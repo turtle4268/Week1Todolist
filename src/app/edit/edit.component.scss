@@ -1,0 +1,32 @@
+.mat-toolbar{
+    background-color:#4A90E2; 
+    button{
+        height: 100%;
+        font-size: 18px;
+    }
+}
+.mat-card{
+    width: 90%;
+    max-width: 620px;
+    margin: 1em auto;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+h3{
+    margin-left: 10px;
+}
+// .star.check{
+//     color: #F5A623;
+// }
+.active{
+    color: #fff;
+    border-bottom: 4px solid #00408B;
+}
+.dtime{
+    padding-left: 32px;
+    font-size: 14px;
+    color: #757575;
+}
+.deletButton{
+    color: #D0021B;
+}
