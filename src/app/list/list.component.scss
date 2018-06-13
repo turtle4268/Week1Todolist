@@ -1,0 +1,24 @@
+.mat-card{
+    width: 90%;
+    max-width: 620px;
+    margin: 1em auto;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    h3{
+        margin-left: 10px;
+    }
+    .donetitle{
+        color: #9B9B9B;
+        text-decoration: line-through;
+    }
+    .dtime{
+        padding-left: 32px;
+        font-size: 14px;
+        color: #757575;
+    }
+    .deletButton{
+        color: #D0021B;
+    }
+}
+
