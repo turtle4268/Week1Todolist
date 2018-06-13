@@ -1,3 +1,30 @@
+<mat-toolbar>
+    <mat-button-toggle-group>
+        <mat-button-toggle (click)="allList()" checked="true">My Tesks</mat-button-toggle>
+        <mat-button-toggle (click)="undone()">in Progress</mat-button-toggle>
+        <mat-button-toggle (click)="done()">Completed</mat-button-toggle>
+    </mat-button-toggle-group>
+</mat-toolbar>
+
 <app-edit></app-edit>
 
-
+      <div *ngFor="let s of result">
+         <mat-card fxLayout="row wrap" fxLayoutAlign="space-between center" [style.backgroundColor]="s.favorite?'#FFF2DC':''">
+            <div fxLayout="row">
+              <mat-checkbox color="primary" (change)="check(s)" [checked]="s.completed"></mat-checkbox>
+              <h3 (click)="s.opendetail=!s.opendetail" [class.donetitle]="s.completed">
+                {{s.title}}
+              </h3>
+            </div>  
+          
+            <div>
+              <button mat-icon-button (click)="s.favorite=!s.favorite" [style.color]="s.favorite?'#F5A623':''"><mat-icon>{{s.favorite?'star':'star_border'}}</mat-icon></button>
+              <button mat-icon-button><mat-icon>mode_edit</mat-icon></button>
+              <button mat-icon-button (click)="delet(s)" class="deletButton"><mat-icon>clear</mat-icon></button>
+            </div>
+            <p fxFlex="80" class="dtime">{{s.date}}</p>
+            <div fxFlex="90" *ngIf="s.opendetail">
+              <p>{{s.comment}}</p>
+            </div>
+          </mat-card>
+      </div>

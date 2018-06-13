@@ -1,0 +1,62 @@
+.mat-toolbar{
+    background-color:#4A90E2; 
+    .mat-button-toggle-group{
+        height: 100%;        
+        box-shadow: none;
+        .mat-button-toggle{
+            font-size: 18px;
+            padding: 12px;
+            color: #00408B;
+            &.mat-button-toggle-checked{
+                background-color: transparent;
+                color: #fff;
+                border-bottom: 4px solid #00408B;                
+            }
+        }
+    }
+}
+.mat-card{
+    width: 90%;
+    max-width: 620px;
+    margin: 1em auto;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    &.editcard{
+        padding: 0;
+        padding-top: 36px;
+    }
+    .fbutton{
+        margin-top: 8px;
+        padding: 8px;
+        font-size: 16px;
+        &.cancel{
+            color: #D0021B;
+            background-color: #fff;
+            border-radius: 0 0 0 5px;
+        }
+        &.add{
+            color: #fff;
+            background-color: #4A90E2;
+            border-radius: 0 0 5px 0;
+        }
+        .mat-icon{
+            font-size: 20px;
+        }
+    }
+}
+h3{
+    margin-left: 10px;
+}
+.donetitle{
+    color: #9B9B9B;
+    text-decoration: line-through;
+}
+.dtime{
+    padding-left: 32px;
+    font-size: 14px;
+    color: #757575;
+}
+.deletButton{
+    color: #D0021B;
+}

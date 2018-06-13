@@ -23,8 +23,18 @@ export class ListService {
   }
   deletList(dlist:list){
     this.lists=this.lists.filter(list=>{
-      return list.title==dlist.title
+      return list.title!==dlist.title
     });
     console.log(this.lists);
+  }
+  
+  allList(){
+    return this.lists;
+  }
+  undone(){
+    return this.lists.filter(list=>!list.completed);
+  }
+  done(){
+    return this.lists.filter(list=>list.completed);   
   }
 }

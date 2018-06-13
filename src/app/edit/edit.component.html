@@ -1,17 +1,21 @@
-<mat-toolbar>
-  <mat-button-toggle-group>
-    <mat-button-toggle (click)="allList()" checked="true">My Tesks</mat-button-toggle>
-    <mat-button-toggle (click)="undone()">in Progress</mat-button-toggle>
-    <mat-button-toggle (click)="done()">Completed</mat-button-toggle>
-  </mat-button-toggle-group>
-</mat-toolbar>
 <mat-card class="editcard">
   <form [formGroup]="todoForm">
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <div class="label" fxFlex="80">Title</div>
-      <mat-form-field floatLabel="never" fxFlex="70">
-        <input matInput placeholder="label" formControlName="title">
-      </mat-form-field>
+      <div class="title" [class.favo]="isfavo" 
+           fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-checkbox color="primary" class="titlecheckbox" formControlName="completed"></mat-checkbox>
+        <mat-form-field floatLabel="never" fxFlex="1 1" class="titleinput">
+          <input matInput placeholder="Type Something Here…" formControlName="title">
+        </mat-form-field>
+        <div fxFlex="auto" fxLayout="row">
+          <button mat-icon-button [style.color]="isfavo?'#F5A623':''" 
+              (click)="favobutton()">
+            <mat-icon>{{isfavo?'star':'star_border'}}</mat-icon>
+          </button>
+          <button mat-icon-button class="oneditbutton"><mat-icon>mode_edit</mat-icon></button>
+        </div>
+      </div>
+      
       
       <div class="label" fxFlex="80"><mat-icon>date_range</mat-icon>Deadline</div>
       <mat-form-field floatLabel="never" fxFlex="70">
@@ -32,26 +36,3 @@
     </div>
   </form>
 </mat-card>
-
-
-<div *ngFor="let s of result">
-   <!-- * {{s.title}}-{{s.date}}-{{s.comment}} -->
-   <mat-card fxLayout="row wrap" fxLayoutAlign="space-between center" [style.backgroundColor]="s.favorite?'#FFF2DC':''">
-      <div fxLayout="row">
-        <mat-checkbox color="primary" (change)="check(s)" [checked]="s.completed"></mat-checkbox>
-        <h3 (click)="s.opendetail=!s.opendetail" [style.color]="s.completed?'#888':''">
-          {{s.title}}
-        </h3>
-      </div>  
-    
-      <div>
-        <button mat-icon-button (click)="s.favorite=!s.favorite" [style.color]="s.favorite?'#F5A623':''"><mat-icon>{{s.favorite?'star':'star_border'}}</mat-icon></button>
-        <button mat-icon-button><mat-icon>mode_edit</mat-icon></button>
-        <button mat-icon-button (click)="delet(s)" class="deletButton"><mat-icon>clear</mat-icon></button>
-      </div>
-      <p fxFlex="80" class="dtime">{{s.date}}</p>
-      <div fxFlex="90" *ngIf="s.opendetail">
-        <p>{{s.comment}}</p>
-      </div>
-    </mat-card>
-</div>

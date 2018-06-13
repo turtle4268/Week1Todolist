@@ -15,14 +15,7 @@ export class EditComponent implements OnInit {
 
   todoForm: FormGroup;
 
-  toolbuttonstate={
-    all:true,
-    undo:false,
-    done:false
-  };
-  viewlist='';
-  orig;
-  result:list[];
+  isfavo=false;
 
   constructor(private fb:FormBuilder, private listService: ListService) { }
 
@@ -30,51 +23,41 @@ export class EditComponent implements OnInit {
     this.todoForm=this.fb.group({
       title:[''],
       date:[''],
-      comment:['']
+      comment:[''],
+      completed:[''],
+      favorite:['']
     });
-    this.getlists();
   }
-  getlists():void{
-    this.orig=this.listService.getList();
-    this.result=this.orig;
-    // console.log('get');
+
+  favobutton(){
+    this.isfavo=!this.isfavo;
   }
 
   onSubmit({value}):void{
     if(value.title!==''){
       value.date=moment(value.date).format('YYYY-MM-DD');
+      value.favorite=this.isfavo;
       this.listService.addList(value);
+      console.log(value);
     }
-    // this.listService.addList(value);
-    // this.test.push(value);
     this.todoForm.setValue({
       title:'',
       date:'',
-      comment:''
+      comment:'',
+      completed:false,
+      favorite:false
     });
+    this.isfavo=false;
   }
   cancel(){
     this.todoForm.setValue({
       title:'',
       date:'',
-      comment:''
+      comment:'',
+      completed:false,
+      favorite:false
     });
+    this.isfavo=false;
   }
-  allList(){
-    this.result=this.orig;
-  }
-  undone(){
-    this.result=this.orig.filter(list=>!list.completed);
-  }
-  done(){
-    this.result=this.orig.filter(list=>list.completed);   
-  }
-  delet(list){
-    this.listService.deletList(list);
-    this.getlists();
-  }
-  check(list:list){
-    list.completed=!list.completed;
-    // console.log(list.completed);
-  }
+ 
 }
