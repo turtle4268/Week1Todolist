@@ -35,7 +35,9 @@ export class EditComponent implements OnInit {
 
   onSubmit({value}):void{
     if(value.title!==''){
-      value.date=moment(value.date).format('YYYY-MM-DD');
+      if(value.date){
+        value.date=moment(value.date).format('YYYY-MM-DD');
+      }
       value.favorite=this.isfavo;
       this.listService.addList(value);
       console.log(value);
