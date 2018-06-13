@@ -1,32 +1,34 @@
 <mat-toolbar>
-  <button mat-button [class.active]="toolbuttonstate.all" (click)="allList()">My Tesks</button>
-  <button mat-button [class.active]="toolbuttonstate.undo" (click)="undone()">in Progress</button>
-  <button mat-button [class.active]="toolbuttonstate.done" (click)="done()">Completed</button>
+  <mat-button-toggle-group>
+    <mat-button-toggle (click)="allList()" checked="true">My Tesks</mat-button-toggle>
+    <mat-button-toggle (click)="undone()">in Progress</mat-button-toggle>
+    <mat-button-toggle (click)="done()">Completed</mat-button-toggle>
+  </mat-button-toggle-group>
 </mat-toolbar>
-<mat-card>
+<mat-card class="editcard">
   <form [formGroup]="todoForm">
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <div class="label" fxFlex="90">Title</div>
-      <mat-form-field floatLabel="never" fxFlex="80">
+      <div class="label" fxFlex="80">Title</div>
+      <mat-form-field floatLabel="never" fxFlex="70">
         <input matInput placeholder="label" formControlName="title">
       </mat-form-field>
       
-      <div class="label" fxFlex="90"><mat-icon>date_range</mat-icon>Deadline</div>
-      <mat-form-field floatLabel="never" fxFlex="80">
+      <div class="label" fxFlex="80"><mat-icon>date_range</mat-icon>Deadline</div>
+      <mat-form-field floatLabel="never" fxFlex="70">
         <input matInput [matDatepicker]="picker" placeholder="label" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       
-      <div class="label" fxFlex="90"><mat-icon>textsms</mat-icon>Comment</div>
-      <mat-form-field floatLabel="never" fxFlex="80">
+      <div class="label" fxFlex="80"><mat-icon>textsms</mat-icon>Comment</div>
+      <mat-form-field floatLabel="never" fxFlex="70">
         <textarea matInput placeholder="label" formControlName="comment">
         </textarea>
       </mat-form-field>
-      <button mat-button class="fbutton" (click)="cancel()"
-              fxFlex="40">Cancel</button>
-      <button mat-button color="primary" class="fbutton" (click)="onSubmit(todoForm)"
-              fxFlex="40">Add Task</button>
+      <button mat-button class="fbutton cancel" (click)="cancel()"
+              fxFlex="50"><mat-icon>clear</mat-icon>Cancel</button>
+      <button mat-button class="fbutton add" (click)="onSubmit(todoForm)"
+              fxFlex="50"><mat-icon>add</mat-icon>Add Task</button>
     </div>
   </form>
 </mat-card>
@@ -34,16 +36,16 @@
 
 <div *ngFor="let s of result">
    <!-- * {{s.title}}-{{s.date}}-{{s.comment}} -->
-   <mat-card fxLayout="row wrap" fxLayoutAlign="space-between center" [style.backgroundColor]="s.favorite?'#FFF2DC':'#FFF'">
+   <mat-card fxLayout="row wrap" fxLayoutAlign="space-between center" [style.backgroundColor]="s.favorite?'#FFF2DC':''">
       <div fxLayout="row">
-        <mat-checkbox (change)="s.completed=!s.completed" [checked]="s.completed"></mat-checkbox>
-        <h3 (click)="s.opendetail=!s.opendetail" [style.color]="s.completed?'#888':'#000'">
+        <mat-checkbox color="primary" (change)="check(s)" [checked]="s.completed"></mat-checkbox>
+        <h3 (click)="s.opendetail=!s.opendetail" [style.color]="s.completed?'#888':''">
           {{s.title}}
         </h3>
       </div>  
     
       <div>
-        <button mat-icon-button (click)="s.favorite=!s.favorite" [style.color]="s.favorite?'#F5A623':'#000'"><mat-icon>{{s.favorite?'star':'star_border'}}</mat-icon></button>
+        <button mat-icon-button (click)="s.favorite=!s.favorite" [style.color]="s.favorite?'#F5A623':''"><mat-icon>{{s.favorite?'star':'star_border'}}</mat-icon></button>
         <button mat-icon-button><mat-icon>mode_edit</mat-icon></button>
         <button mat-icon-button (click)="delet(s)" class="deletButton"><mat-icon>clear</mat-icon></button>
       </div>

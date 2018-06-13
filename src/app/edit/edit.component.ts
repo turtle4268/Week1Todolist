@@ -14,7 +14,6 @@ import * as moment from 'moment';
 export class EditComponent implements OnInit {
 
   todoForm: FormGroup;
-  // opendetail: boolean=false;
 
   toolbuttonstate={
     all:true,
@@ -34,13 +33,11 @@ export class EditComponent implements OnInit {
       comment:['']
     });
     this.getlists();
-    // this.result=this.test;
-    // this.allList();
   }
   getlists():void{
     this.orig=this.listService.getList();
     this.result=this.orig;
-    console.log('get');
+    // console.log('get');
   }
 
   onSubmit({value}):void{
@@ -65,28 +62,19 @@ export class EditComponent implements OnInit {
   }
   allList(){
     this.result=this.orig;
-    this.toolbuttonstate.all=true;
-    this.toolbuttonstate.undo=false;
-    this.toolbuttonstate.done=false;    
   }
   undone(){
     this.result=this.orig.filter(list=>!list.completed);
-    this.toolbuttonstate.all=false;
-    this.toolbuttonstate.undo=true;
-    this.toolbuttonstate.done=false;
   }
   done(){
     this.result=this.orig.filter(list=>list.completed);   
-    this.toolbuttonstate.all=false;
-    this.toolbuttonstate.undo=false;
-    this.toolbuttonstate.done=true;
   }
   delet(list){
     this.listService.deletList(list);
     this.getlists();
   }
-  // check(list:list){
-  //   list.completed=!list.completed;
-  //   // console.log(list.completed);
-  // }
+  check(list:list){
+    list.completed=!list.completed;
+    // console.log(list.completed);
+  }
 }

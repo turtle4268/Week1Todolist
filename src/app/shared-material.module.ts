@@ -8,7 +8,8 @@ import { MatInputModule,
          MatCardModule,
          MatIconModule,
          MatButtonModule,
-         MatCheckboxModule
+         MatCheckboxModule,
+         MatButtonToggleModule
                                  } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonToggleModule
   ],
   declarations: []
 })
