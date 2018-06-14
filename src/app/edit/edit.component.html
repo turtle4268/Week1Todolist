@@ -32,7 +32,7 @@
       <button mat-button class="fbutton cancel" (click)="cancel()"
               fxFlex="50"><mat-icon>clear</mat-icon>Cancel</button>
       <button mat-button class="fbutton add" (click)="onSubmit(todoForm)"
-              fxFlex="50"><mat-icon>add</mat-icon>Add Task</button>
+              fxFlex="50"><mat-icon>add</mat-icon>{{slist?'Save':'Add Task'}}</button>
     </div>
   </form>
 </mat-card>

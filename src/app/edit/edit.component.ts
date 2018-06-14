@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ListService } from '../list.service';
 import { list } from '../list';
@@ -12,6 +12,8 @@ import * as moment from 'moment';
 
 
 export class EditComponent implements OnInit {
+
+  @Input () slist:list;
 
   todoForm: FormGroup;
 
@@ -27,6 +29,17 @@ export class EditComponent implements OnInit {
       completed:[''],
       favorite:['']
     });
+    if(this.slist){
+      this.todoForm.setValue({
+        title:this.slist.title,
+        date:moment(this.slist.date).format('YYYY-MM-DD'),
+        comment:this.slist.comment,
+        completed:this.slist.completed,
+        favorite:this.slist.favorite
+      });
+      this.isfavo=this.slist.favorite;
+      console.log(this.slist);
+    }
   }
 
   favobutton(){
@@ -39,7 +52,11 @@ export class EditComponent implements OnInit {
         value.date=moment(value.date).format('YYYY-MM-DD');
       }
       value.favorite=this.isfavo;
-      this.listService.addList(value);
+      if(this.slist){
+        
+      }else{
+        this.listService.addList(value);
+      }
       console.log(value);
     }
     this.todoForm.setValue({
@@ -50,6 +67,7 @@ export class EditComponent implements OnInit {
       favorite:false
     });
     this.isfavo=false;
+    this.closeedit();
   }
   cancel(){
     this.todoForm.setValue({
@@ -57,9 +75,15 @@ export class EditComponent implements OnInit {
       date:'',
       comment:'',
       completed:false,
-      favorite:false
+      favorite:false        
     });
     this.isfavo=false;
+    this.closeedit();
+  }
+
+  closeedit(){
+    this.listService.closeedit();
+    if(this.slist) this.slist.isedit=false;
   }
  
 }

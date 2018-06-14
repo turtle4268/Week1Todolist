@@ -23,4 +23,11 @@ export class ListComponent implements OnInit {
     list.completed=!list.completed;
     console.log(list.completed);
   }
+
+  isedit(){
+    return this.listService.isedit;
+  }
+  openedit(list:list){
+    list.isedit=true;
+  }
 }

@@ -6,9 +6,13 @@
     </mat-button-toggle-group>
 </mat-toolbar>
 
-<mat-card class="add" fxLayout="row" fxLayoutAlign="start center">
-    <mat-icon>add</mat-icon>Add Task
-</mat-card>
-<app-edit></app-edit>
+<ng-container >
+    <mat-card class="add mat-elevation-z0" (click)="openedit()" *ngIf="!isedit()"
+            fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon>add</mat-icon>Add Task
+    </mat-card>
+    <app-edit *ngIf="isedit()"></app-edit>
+</ng-container>
+
 
 <app-list [result]="result"></app-list>

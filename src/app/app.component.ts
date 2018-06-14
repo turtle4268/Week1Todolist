@@ -25,7 +25,6 @@ export class AppComponent {
 
   allList(){
     this.result=this.listService.allList();
-    
   }
   undone(){
     this.result=this.listService.undone();    
@@ -33,5 +32,10 @@ export class AppComponent {
   done(){
     this.result=this.listService.done();    
   }
-  
+  openedit(){
+    this.listService.openedit();
+  }
+  isedit(){
+    return this.listService.isedit;
+  }
 }

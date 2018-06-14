@@ -1,5 +1,5 @@
-<div *ngFor="let s of result">
-  <mat-card  (click)="s.opendetail=!s.opendetail"
+<ng-container *ngFor="let s of result">
+  <mat-card  (click)="s.opendetail=!s.opendetail" *ngIf="!s.isedit"
       fxLayout="row wrap" fxLayoutAlign="space-between center" [style.backgroundColor]="s.favorite?'#FFF2DC':''">
     <div fxLayout="row">
       <mat-checkbox color="primary" (change)="check(s)" (click)="$event.stopPropagation()" [checked]="s.completed"></mat-checkbox>
@@ -10,7 +10,7 @@
   
     <div>
       <button mat-icon-button (click)="s.favorite=!s.favorite;$event.stopPropagation()" [style.color]="s.favorite?'#F5A623':''"><mat-icon>{{s.favorite?'star':'star_border'}}</mat-icon></button>
-      <button mat-icon-button><mat-icon>mode_edit</mat-icon></button>
+      <button mat-icon-button (click)="openedit(s);$event.stopPropagation()"><mat-icon>mode_edit</mat-icon></button>
       <button mat-icon-button (click)="delet(s);$event.stopPropagation()" class="deletButton"><mat-icon>clear</mat-icon></button>
     </div>
     <p fxFlex="80" class="dtime"><span *ngIf="s.date">{{s.date}}</span><span *ngIf="s.comment"><mat-icon>textsms</mat-icon></span></p>
@@ -18,4 +18,5 @@
       <p>{{s.comment}}</p>
     </div>
   </mat-card>
-</div>
+  <app-edit *ngIf="s.isedit" [slist]="s"></app-edit>
+</ng-container>
