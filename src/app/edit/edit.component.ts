@@ -44,6 +44,7 @@ export class EditComponent implements OnInit {
 
   favobutton(){
     this.isfavo=!this.isfavo;
+    if(this.slist) this.slist.favorite=this.isfavo;
   }
 
   onSubmit({value}):void{
@@ -59,14 +60,14 @@ export class EditComponent implements OnInit {
       }
       console.log(value);
     }
-    this.todoForm.setValue({
-      title:'',
-      date:'',
-      comment:'',
-      completed:false,
-      favorite:false
-    });
-    this.isfavo=false;
+    // this.todoForm.setValue({
+    //   title:'',
+    //   date:'',
+    //   comment:'',
+    //   completed:false,
+    //   favorite:false
+    // });
+    // this.isfavo=false;
     this.closeedit();
   }
   cancel(){
@@ -82,8 +83,11 @@ export class EditComponent implements OnInit {
   }
 
   closeedit(){
-    this.listService.closeedit();
-    if(this.slist) this.slist.isedit=false;
+    if(this.slist) {
+      this.slist.isedit=false;
+    }else{
+      this.listService.closeedit();
+    }
   }
  
 }

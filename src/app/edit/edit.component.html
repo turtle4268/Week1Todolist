@@ -19,14 +19,14 @@
       
       <div class="label" fxFlex="80"><mat-icon>date_range</mat-icon>Deadline</div>
       <mat-form-field floatLabel="never" fxFlex="70">
-        <input matInput [matDatepicker]="picker" placeholder="label" formControlName="date">
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       
       <div class="label" fxFlex="80"><mat-icon>textsms</mat-icon>Comment</div>
       <mat-form-field floatLabel="never" fxFlex="70">
-        <textarea matInput placeholder="label" formControlName="comment">
+        <textarea matInput placeholder="Type your memo here…" formControlName="comment">
         </textarea>
       </mat-form-field>
       <button mat-button class="fbutton cancel" (click)="cancel()"
